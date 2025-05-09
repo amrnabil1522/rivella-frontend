@@ -11,6 +11,7 @@ export const MyContextProvider = ({ children }) => {
 
   // Create axios instance with baseURL
   const axiosInstance = axios.create({ baseURL });
+  console.log(baseURL);
 
   // State variables
   const [isLogin, setIsLogin] = useState(false);
@@ -111,13 +112,13 @@ export const MyContextProvider = ({ children }) => {
 
       return true;
     } catch (error) {
-      if (error.response.data.message == "Invalid email or password") {
+      if (error.response.data.message === "Invalid email or password") {
         Swal.fire({
           icon: "error",
           title: "البريد او كلمة المرور غير صحيحة",
         });
       } else if (
-        error.response.data.message == "Please verify your email first"
+        error.response.data.message === "Please verify your email first"
       ) {
         Swal.fire({
           icon: "error",
@@ -450,7 +451,7 @@ export const MyContextProvider = ({ children }) => {
 
   // Export context values and functions
   const contextValue = {
-    host,
+    host: baseURL,
     axiosInstance,
     isLogin,
     userData,
